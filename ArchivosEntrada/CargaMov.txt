@@ -1,0 +1,13 @@
+MantenimientoAviones,Salida,A100;
+IngresoEquipajes;
+MantenimientoAviones,Salida,A100;
+IngresoEquipajes;
+MantenimientoAviones,Ingreso,A102;
+IngresoEquipajes;
+MantenimientoAviones,Ingreso,A102;
+IngresoEquipajes;
+MantenimientoAviones,Salida,A100;
+IngresoEquipajes;
+MantenimientoAviones,Ingreso,A102;
+IngresoEquipajes;
+MantenimientoAviones,Salida,A100;

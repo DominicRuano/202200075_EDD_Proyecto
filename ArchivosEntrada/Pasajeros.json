@@ -1,0 +1,202 @@
+[
+    {
+        "nombre": "John Doe",
+        "nacionalidad": "Estados Unidos",
+        "numero_de_pasaporte": "A12345678",
+        "vuelo": "A100",
+        "asiento": 10,
+        "destino": "New York",
+        "origen": "Los Angeles",
+        "equipaje_facturado": 2
+    },
+    {
+        "nombre": "Jane Smith",
+        "nacionalidad": "Reino Unido",
+        "numero_de_pasaporte": "B98765432",
+        "vuelo": "A200",
+        "asiento": 1,
+        "destino": "Londres",
+        "origen": "Paris",
+        "equipaje_facturado": 0
+    },
+    {
+        "nombre": "Carlos Martinez",
+        "nacionalidad": "México",
+        "numero_de_pasaporte": "C23456789",
+        "vuelo": "A100",
+        "asiento": 1,
+        "destino": "Madrid",
+        "origen": "Ciudad de México",
+        "equipaje_facturado": 2
+    },
+    {
+        "nombre": "Maria Garcia",
+        "nacionalidad": "España",
+        "numero_de_pasaporte": "D34567890",
+        "vuelo": "A200",
+        "asiento": 2,
+        "destino": "Barcelona",
+        "origen": "Lisboa",
+        "equipaje_facturado": 1
+    },
+    {
+        "nombre": "James Brown",
+        "nacionalidad": "Estados Unidos",
+        "numero_de_pasaporte": "E45678901",
+        "vuelo": "A100",
+        "asiento": 3,
+        "destino": "Chicago",
+        "origen": "Miami",
+        "equipaje_facturado": 0
+    },
+    {
+        "nombre": "Anna Wilson",
+        "nacionalidad": "Canadá",
+        "numero_de_pasaporte": "F56789012",
+        "vuelo": "A100",
+        "asiento": 5,
+        "destino": "Toronto",
+        "origen": "Vancouver",
+        "equipaje_facturado": 1
+    },
+    {
+        "nombre": "Li Wei",
+        "nacionalidad": "China",
+        "numero_de_pasaporte": "G67890123",
+        "vuelo": "A700",
+        "asiento": 4,
+        "destino": "Beijing",
+        "origen": "Shanghai",
+        "equipaje_facturado": 2
+    },
+    {
+        "nombre": "Olga Ivanova",
+        "nacionalidad": "Rusia",
+        "numero_de_pasaporte": "H78901234",
+        "vuelo": "A200",
+        "asiento": 3,
+        "destino": "Moscú",
+        "origen": "San Petersburgo",
+        "equipaje_facturado": 3
+    },
+    {
+        "nombre": "Ahmed Ali",
+        "nacionalidad": "Egipto",
+        "numero_de_pasaporte": "I89012345",
+        "vuelo": "A100",
+        "asiento": 6,
+        "destino": "El Cairo",
+        "origen": "Alejandría",
+        "equipaje_facturado": 1
+    },
+    {
+        "nombre": "Sophia Müller",
+        "nacionalidad": "Alemania",
+        "numero_de_pasaporte": "J90123456",
+        "vuelo": "A700",
+        "asiento": 3,
+        "destino": "Berlín",
+        "origen": "Múnich",
+        "equipaje_facturado": 2
+    },
+    {
+        "nombre": "Lucas Moreira",
+        "nacionalidad": "Brasil",
+        "numero_de_pasaporte": "K01234567",
+        "vuelo": "A100",
+        "asiento": 20,
+        "destino": "Río de Janeiro",
+        "origen": "São Paulo",
+        "equipaje_facturado": 3
+    },
+    {
+        "nombre": "Hiroshi Tanaka",
+        "nacionalidad": "Japón",
+        "numero_de_pasaporte": "L12345678",
+        "vuelo": "A200",
+        "asiento": 4,
+        "destino": "Tokio",
+        "origen": "Osaka",
+        "equipaje_facturado": 1
+    },
+    {
+        "nombre": "Emma Svensson",
+        "nacionalidad": "Suecia",
+        "numero_de_pasaporte": "M23456789",
+        "vuelo": "A100",
+        "asiento": 2,
+        "destino": "Estocolmo",
+        "origen": "Gotemburgo",
+        "equipaje_facturado": 2
+    },
+    {
+        "nombre": "Pablo Fernandez",
+        "nacionalidad": "Argentina",
+        "numero_de_pasaporte": "N34567890",
+        "vuelo": "A700",
+        "asiento": 2,
+        "destino": "Buenos Aires",
+        "origen": "Córdoba",
+        "equipaje_facturado": 1
+    },
+    {
+        "nombre": "Isabella Rossi",
+        "nacionalidad": "Italia",
+        "numero_de_pasaporte": "O45678901",
+        "vuelo": "A100",
+        "asiento": 8,
+        "destino": "Roma",
+        "origen": "Milán",
+        "equipaje_facturado": 2
+    },
+    {
+        "nombre": "Michael Johnson",
+        "nacionalidad": "Australia",
+        "numero_de_pasaporte": "P56789012",
+        "vuelo": "A200",
+        "asiento": 5,
+        "destino": "Sídney",
+        "origen": "Melbourne",
+        "equipaje_facturado": 1
+    },
+    {
+        "nombre": "Yasmine Ahmed",
+        "nacionalidad": "Emiratos Árabes Unidos",
+        "numero_de_pasaporte": "Q67890123",
+        "vuelo": "A100",
+        "asiento": 11,
+        "destino": "Dubái",
+        "origen": "Abu Dabi",
+        "equipaje_facturado": 3
+    },
+    {
+        "nombre": "Nina Petrova",
+        "nacionalidad": "Ucrania",
+        "numero_de_pasaporte": "R78901234",
+        "vuelo": "A700",
+        "asiento": 1,
+        "destino": "Kiev",
+        "origen": "Odesa",
+        "equipaje_facturado": 2
+    },
+    {
+        "nombre": "Jorge Santos",
+        "nacionalidad": "Portugal",
+        "numero_de_pasaporte": "S89012345",
+        "vuelo": "A100",
+        "asiento": 17,
+        "destino": "Lisboa",
+        "origen": "Oporto",
+        "equipaje_facturado": 1
+    },
+    {
+        "nombre": "Hannah Cohen",
+        "nacionalidad": "Israel",
+        "numero_de_pasaporte": "T90123456",
+        "vuelo": "A200",
+        "asiento": 6,
+        "destino": "Tel Aviv",
+        "origen": "Jerusalén",
+        "equipaje_facturado": 2
+    }
+]

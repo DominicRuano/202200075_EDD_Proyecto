@@ -1,0 +1,222 @@
+[
+    {
+        "vuelo": "A100",
+        "numero_de_registro": "N12345",
+        "modelo": "Boeing 737",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2015,
+        "capacidad": 180,
+        "peso_max_despegue": 79000,
+        "aerolinea": "Airlinex",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "A102",
+        "numero_de_registro": "A54321",
+        "modelo": "Airbus A320",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2018,
+        "capacidad": 150,
+        "peso_max_despegue": 77000,
+        "aerolinea": "Airlinex",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "A103",
+        "numero_de_registro": "N67890",
+        "modelo": "Boeing 747",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2010,
+        "capacidad": 366,
+        "peso_max_despegue": 87500,
+        "aerolinea": "Airlinex",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "A104",
+        "numero_de_registro": "A67891",
+        "modelo": "Airbus A380",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2012,
+        "capacidad": 525,
+        "peso_max_despegue": 120000,
+        "aerolinea": "Airlinex",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "A105",
+        "numero_de_registro": "N78901",
+        "modelo": "Boeing 777",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2013,
+        "capacidad": 396,
+        "peso_max_despegue": 90000,
+        "aerolinea": "Airlinex",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "A106",
+        "numero_de_registro": "A78902",
+        "modelo": "Airbus A350",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2015,
+        "capacidad": 315,
+        "peso_max_despegue": 87500,
+        "aerolinea": "Airlinex",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "A107",
+        "numero_de_registro": "N89012",
+        "modelo": "Boeing 787",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2016,
+        "capacidad": 242,
+        "peso_max_despegue": 73500,
+        "aerolinea": "Airlinex",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "A108",
+        "numero_de_registro": "A89013",
+        "modelo": "Airbus A321",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2017,
+        "capacidad": 185,
+        "peso_max_despegue": 83000,
+        "aerolinea": "Airlinex",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "A109",
+        "numero_de_registro": "N90123",
+        "modelo": "Boeing 757",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2014,
+        "capacidad": 239,
+        "peso_max_despegue": 70500,
+        "aerolinea": "Airlinex",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "A110",
+        "numero_de_registro": "A90124",
+        "modelo": "Airbus A330",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2019,
+        "capacidad": 295,
+        "peso_max_despegue": 85000,
+        "aerolinea": "Airlinex",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "A111",
+        "numero_de_registro": "N01234",
+        "modelo": "Boeing 767",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2011,
+        "capacidad": 261,
+        "peso_max_despegue": 78000,
+        "aerolinea": "Airlinex",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "A112",
+        "numero_de_registro": "A01235",
+        "modelo": "Airbus A340",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2013,
+        "capacidad": 303,
+        "peso_max_despegue": 82000,
+        "aerolinea": "Airlinex",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "A113",
+        "numero_de_registro": "N12356",
+        "modelo": "Boeing 727",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2009,
+        "capacidad": 149,
+        "peso_max_despegue": 64000,
+        "aerolinea": "Airlinex",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "A114",
+        "numero_de_registro": "A12357",
+        "modelo": "Airbus A220",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2018,
+        "capacidad": 130,
+        "peso_max_despegue": 61000,
+        "aerolinea": "Airlinex",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "A115",
+        "numero_de_registro": "N23467",
+        "modelo": "Boeing 737 Max",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2020,
+        "capacidad": 178,
+        "peso_max_despegue": 80000,
+        "aerolinea": "Airlinex",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "A116",
+        "numero_de_registro": "A23468",
+        "modelo": "Airbus A310",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2012,
+        "capacidad": 280,
+        "peso_max_despegue": 84000,
+        "aerolinea": "Airlinex",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "A117",
+        "numero_de_registro": "N34578",
+        "modelo": "Boeing 747-8",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2016,
+        "capacidad": 410,
+        "peso_max_despegue": 90000,
+        "aerolinea": "Airlinex",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "A118",
+        "numero_de_registro": "A34579",
+        "modelo": "Airbus A350-1000",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2019,
+        "capacidad": 366,
+        "peso_max_despegue": 105000,
+        "aerolinea": "Airlinex",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "A119",
+        "numero_de_registro": "N45689",
+        "modelo": "Boeing 787-9",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2017,
+        "capacidad": 296,
+        "peso_max_despegue": 77000,
+        "aerolinea": "Airlinex",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "A120",
+        "numero_de_registro": "A45690",
+        "modelo": "Airbus A321neo",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2021,
+        "capacidad": 240,
+        "peso_max_despegue": 88000,
+        "aerolinea": "Airlinex",
+        "estado": "Disponible"
+    }
+]
