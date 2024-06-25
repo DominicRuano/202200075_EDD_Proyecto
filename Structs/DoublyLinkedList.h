@@ -9,6 +9,8 @@ public:
     DoublyLinkedList(/* args */);
     ~DoublyLinkedList();
 
+    Nodo<T>* getHead(){return head;}
+
     void add(T &val);
     void Print();
     void consultar(string pasaporte);
