@@ -22,7 +22,15 @@ DoublyLinkedList<T>::DoublyLinkedList(/* args */){
 
 template <class T>
 DoublyLinkedList<T>::~DoublyLinkedList(){
-    // Pendiente de implementar
+    Nodo<T> *current = head;
+    Nodo<T> *next;
+    for (int i = 0; i < length; i++){
+        next = current->next;
+        delete current;
+        current = next;
+    }
+    head = nullptr;
+    length = 0;
 }
 
 template <class T>
