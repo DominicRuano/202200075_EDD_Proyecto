@@ -12,6 +12,7 @@ public:
     Nodo<T>* getHead(){return head;}
 
     void add(T &val);
+    void addEnd(T &val);
     void Print();
     void consultar(string pasaporte);
     void graph(ofstream &file, string ID, string str);
@@ -33,6 +34,22 @@ DoublyLinkedList<T>::~DoublyLinkedList(){
     }
     head = nullptr;
     length = 0;
+}
+
+template <class T>
+void DoublyLinkedList<T>::addEnd(T &val){
+    Nodo<T> *NuevoNodo = new Nodo<T>(val);
+    if (!head){
+        head = NuevoNodo;
+    }else{
+        Nodo<T> *current = head;
+        while (current->next != nullptr){
+            current = current->next;
+        }
+        current->next = NuevoNodo;
+        NuevoNodo->prev = current;
+    }
+    length++;
 }
 
 template <class T>

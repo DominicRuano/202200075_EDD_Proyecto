@@ -41,7 +41,7 @@ int HashTable<T>::hashFunction(string key){
 template <class T>
 void HashTable<T>::insert(T &val){
     int index = hashFunction(val.getNumeroDeID());
-    table[index].add(val);
+    table[index].addEnd(val);
 }
 
 template <class T>
