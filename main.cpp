@@ -24,35 +24,46 @@ bool CargarMovimientos(CircularDoublyLinkedList<avion> &listaAviones,
 
 int main(){
     int input;      // Guarda el valor seleccionado por el usuario.
-    bool cond;   // Condicion para salir del ciclo.
 
     Agencia *agencia = new Agencia();
 
-    while (input != 6){
-        cond = false;
+    while (input != 8){
 
         Menu(input); /*Recibe el apuntador para recibir un input usado como seleccion en el menu*/
         switch (input){
         case 1:
-            while (!CargaAviones(agencia->getListAvionesDisponibles(), agencia->getListAvionesMantenimiento()));
+            // Carga de aviones.
             break;
         case 2:
-            while (!EncolarClientes(agencia->getQueuePasajeros()));
+            // Carga de pilotos.
             break;
         case 3:
-            while (!CargarMovimientos(agencia->getListAvionesDisponibles(), 
-                                        agencia->getListAvionesMantenimiento(), 
-                                        agencia->getQueuePasajeros(), 
-                                        agencia->getStackPasajeros(), 
-                                        agencia->getListPasajeros()));
+            // Carga de Rutas.
             break;
         case 4:
-            FindByPasaPorte(agencia->getListPasajeros());
+            // Carga de Movimientos.
             break;
         case 5:
-            agencia->GraficarAvionesDisponibles();
+            SubMenu(input);
+            switch (input){
+            case 1:
+                // Recorrido en PreOrden.
+                break;
+            case 2:
+                // Recorrido en InOrden.
+                break;
+            case 3:
+                // Recorrido en PostOrden.
+                break;
+            default:    
+                break;
+            }
             break;
         case 6:
+            // Recomendar Rutas.
+            break;
+        case 7:
+            // Visualizar Reportes.
             break;
         default:
             break;
@@ -254,11 +265,27 @@ void Menu(int &input){
     system("cls");
     cout << "------------ MENU -------------- [ingrese \"exit\", para salir de cualquier submenu]" << endl;
     cout << "1. Carga de Aviones." << endl;
-    cout << "2. Carga de Pasajeros." << endl;
-    cout << "3. Carga de Movimientos." << endl;
-    cout << "4. Consulta Pasajeros." << endl;
-    cout << "5. Visualizar Reportes." << endl;
-    cout << "6. Salir." << endl;
+    cout << "2. Carga de Pilotos." << endl;
+    cout << "3. Carga de Rutas." << endl;
+    cout << "4. Carga de Movimientos." << endl;
+    cout << "5. Consulta de Horas de Vuelo (Pilotos)." << endl;
+    cout << "6. Recomendar Ruta." << endl;
+    cout << "7. Visualizar Reportes." << endl;
+    cout << "8. Salir." << endl;
+
+    cout << "Seleccione una opcion: ";
+    GetOp(input);
+}
+
+/*
+Funcion que imprime el submenu de opciones.
+Recibe como parametro un puntero de tipo int, el cual se encarga de recibir el valor del input del usuario.
+*/
+void SubMenu(int& input){
+    cout << "----- Seleccione un Recorrido -----" << endl;
+    cout << "1. Recorrido en PreOrden." << endl;
+    cout << "2. Recorrido en InOrden." << endl;
+    cout << "3. Recorrido en PostOrden." << endl;
 
     cout << "Seleccione una opcion: ";
     GetOp(input);
