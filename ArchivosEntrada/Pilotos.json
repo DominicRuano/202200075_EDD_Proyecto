@@ -1,0 +1,162 @@
+[
+    {
+        "nombre": "John Doe",
+        "nacionalidad": "Estados Unidos",
+        "numero_de_id": "P12345678",
+        "vuelo": "A100",
+        "horas_de_vuelo": 600,
+        "tipo_de_licencia": "PPL"
+    },
+    {
+        "nombre": "Jane Smith",
+        "nacionalidad": "Reino Unido",
+        "numero_de_id": "P98765432",
+        "vuelo": "A200",
+        "horas_de_vuelo": 99,
+        "tipo_de_licencia": "CPL"
+    },
+    {
+        "nombre": "Michael Brown",
+        "nacionalidad": "Canadá",
+        "numero_de_id": "P34567890",
+        "vuelo": "A300",
+        "horas_de_vuelo": 200,
+        "tipo_de_licencia": "ATPL"
+    },
+    {
+        "nombre": "Emily Davis",
+        "nacionalidad": "Australia",
+        "numero_de_id": "P87654321",
+        "vuelo": "A400",
+        "horas_de_vuelo": 150,
+        "tipo_de_licencia": "PPL"
+    },
+    {
+        "nombre": "Daniel Wilson",
+        "nacionalidad": "Nueva Zelanda",
+        "numero_de_id": "P23456789",
+        "vuelo": "A500",
+        "horas_de_vuelo": 300,
+        "tipo_de_licencia": "CPL"
+    },
+    {
+        "nombre": "Laura Martinez",
+        "nacionalidad": "España",
+        "numero_de_id": "P12348765",
+        "vuelo": "A600",
+        "horas_de_vuelo": 400,
+        "tipo_de_licencia": "ATPL"
+    },
+    {
+        "nombre": "David Lee",
+        "nacionalidad": "Singapur",
+        "numero_de_id": "P87651234",
+        "vuelo": "A700",
+        "horas_de_vuelo": 250,
+        "tipo_de_licencia": "PPL"
+    },
+    {
+        "nombre": "Emma Clark",
+        "nacionalidad": "Irlanda",
+        "numero_de_id": "P23451234",
+        "vuelo": "A800",
+        "horas_de_vuelo": 180,
+        "tipo_de_licencia": "CPL"
+    },
+    {
+        "nombre": "James White",
+        "nacionalidad": "Sudáfrica",
+        "numero_de_id": "P12347654",
+        "vuelo": "A900",
+        "horas_de_vuelo": 350,
+        "tipo_de_licencia": "ATPL"
+    },
+    {
+        "nombre": "Sophia Harris",
+        "nacionalidad": "Italia",
+        "numero_de_id": "P56781234",
+        "vuelo": "A1000",
+        "horas_de_vuelo": 275,
+        "tipo_de_licencia": "PPL"
+    },
+    {
+        "nombre": "Lucas Robinson",
+        "nacionalidad": "Alemania",
+        "numero_de_id": "P98761234",
+        "vuelo": "A1100",
+        "horas_de_vuelo": 320,
+        "tipo_de_licencia": "CPL"
+    },
+    {
+        "nombre": "Olivia Walker",
+        "nacionalidad": "Francia",
+        "numero_de_id": "P65431234",
+        "vuelo": "A1200",
+        "horas_de_vuelo": 400,
+        "tipo_de_licencia": "ATPL"
+    },
+    {
+        "nombre": "Benjamin King",
+        "nacionalidad": "Brasil",
+        "numero_de_id": "P43211234",
+        "vuelo": "A1300",
+        "horas_de_vuelo": 290,
+        "tipo_de_licencia": "PPL"
+    },
+    {
+        "nombre": "Mia Rodriguez",
+        "nacionalidad": "México",
+        "numero_de_id": "P32141234",
+        "vuelo": "A1400",
+        "horas_de_vuelo": 310,
+        "tipo_de_licencia": "CPL"
+    },
+    {
+        "nombre": "Henry Scott",
+        "nacionalidad": "Argentina",
+        "numero_de_id": "P21431234",
+        "vuelo": "A1500",
+        "horas_de_vuelo": 375,
+        "tipo_de_licencia": "ATPL"
+    },
+    {
+        "nombre": "Charlotte Green",
+        "nacionalidad": "Colombia",
+        "numero_de_id": "P98741234",
+        "vuelo": "A1600",
+        "horas_de_vuelo": 240,
+        "tipo_de_licencia": "PPL"
+    },
+    {
+        "nombre": "Alexander Baker",
+        "nacionalidad": "Chile",
+        "numero_de_id": "P65421234",
+        "vuelo": "A1700",
+        "horas_de_vuelo": 280,
+        "tipo_de_licencia": "CPL"
+    },
+    {
+        "nombre": "Ava Adams",
+        "nacionalidad": "Perú",
+        "numero_de_id": "P43231234",
+        "vuelo": "A1800",
+        "horas_de_vuelo": 360,
+        "tipo_de_licencia": "ATPL"
+    },
+    {
+        "nombre": "William Hill",
+        "nacionalidad": "Ecuador",
+        "numero_de_id": "P32151234",
+        "vuelo": "A1900",
+        "horas_de_vuelo": 330,
+        "tipo_de_licencia": "PPL"
+    },
+    {
+        "nombre": "Isabella Moore",
+        "nacionalidad": "Uruguay",
+        "numero_de_id": "P21451234",
+        "vuelo": "A2000",
+        "horas_de_vuelo": 310,
+        "tipo_de_licencia": "CPL"
+    }
+]
