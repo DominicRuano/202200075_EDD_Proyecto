@@ -4,6 +4,7 @@ template <typename T>
 class Nodo{
 public:
     T data;
+    int fila, columna;
     Nodo<T>* next;
     Nodo<T>* prev;
     Nodo<T>* down;
