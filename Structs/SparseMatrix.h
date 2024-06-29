@@ -121,5 +121,14 @@ SparseMatrix<T>::SparseMatrix(/* args */){
 
 template <class T>
 SparseMatrix<T>::~SparseMatrix(){
-    
+    Nodo<string>* Current = head;
+    while (Current != nullptr){
+        Nodo<T>* temp = Current->getNext();
+        while (temp != nullptr){
+            Nodo<T>* temp2 = temp->getNext();
+            delete temp;
+            temp = temp2;
+        }
+        Current = Current->getDown();
+    }
 }
