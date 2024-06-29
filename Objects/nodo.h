@@ -4,7 +4,7 @@ template <typename T>
 class Nodo{
 private:
     T data;
-    int fila, columna;
+    string fila, columna;
     Nodo<T>* next;
     Nodo<T>* prev;
     Nodo<T>* down;
@@ -12,14 +12,15 @@ private:
 
 public:
     Nodo(const T& value) : data(value), next(nullptr), prev(nullptr) {}
+    Nodo(const string F, string C) : fila(F), columna(C) , next(nullptr), prev(nullptr) {}
 
     T getData() const {return data;}
     void setData(const T& value) {data = value;}
 
-    int getFila() const {return fila;}
+    string getFila() const {return fila;}
     void setFila(int value) {fila = value;}
 
-    int getColumna() const {return columna;}
+    string getColumna() const {return columna;}
     void setColumna(int value) {columna = value;}
 
     Nodo<T>* getNext() const {return next;}
