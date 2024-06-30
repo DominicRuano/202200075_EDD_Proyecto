@@ -231,6 +231,11 @@ private:
         delete sibling;
     }
 
+    void IsEmpty() {
+        if (root == nullptr)
+            cout << "The tree is empty\n";
+    }
+
 public:
     ArbolB(int t) : minDegree(t) {
         root = new BNode(t, true);
@@ -286,6 +291,13 @@ public:
         file << "\tnode [shape=record];" << endl;
         file << "\tlabel=\"" << str << "\";" << endl;
         file << "\tcolor=blue;" << endl;
+
+        if (root->keys.size() < 1){
+        file <<"node [margin=0, shape=box, style=filled, color=none, fillcolor=none];" << endl; 
+        file << "\tnode0 [label=\"Arbol Vacio!\", margin=0, shape=box, style=filled, color=none, fillcolor=none];\n}" << endl;
+        return;
+        }
+        
         int count = 0;
         generateDot(root, file, count);
         file << "}\n";
