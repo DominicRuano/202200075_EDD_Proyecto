@@ -9,12 +9,14 @@ using namespace std;
 
 using json = nlohmann::json;
 
+Agencia* agencia = new Agencia();
+
 template <typename T>
 void GetOp(T &input);
 void Menu(int &input);
 void FindByPasaPorte(DoublyLinkedList<Pasajero> &listaPasajeros);
 json ReadJson(string filePath);
-bool CargaAviones(CircularDoublyLinkedList<avion> &listaAviones, CircularDoublyLinkedList<avion> &listaAviones2);
+bool CargaAviones();
 bool EncolarClientes(Queue<Pasajero> &colaPasajeros);
 bool CargarMovimientos(CircularDoublyLinkedList<avion> &listaAviones, 
                         CircularDoublyLinkedList<avion> &listaAviones2, 
@@ -25,14 +27,11 @@ bool CargarMovimientos(CircularDoublyLinkedList<avion> &listaAviones,
 int main(){
     int input;      // Guarda el valor seleccionado por el usuario.
 
-    Agencia *agencia = new Agencia();
-
     while (input != 8){
-
         Menu(input); /*Recibe el apuntador para recibir un input usado como seleccion en el menu*/
         switch (input){
         case 1:
-            // Carga de aviones.
+            while (!CargaAviones());
             break;
         case 2:
             // Carga de pilotos.
@@ -44,6 +43,7 @@ int main(){
             // Carga de Movimientos.
             break;
         case 5:
+            /*
             SubMenu(input);
             switch (input){
             case 1:
@@ -58,12 +58,13 @@ int main(){
             default:    
                 break;
             }
+            */
             break;
         case 6:
             // Recomendar Rutas.
             break;
         case 7:
-            // Visualizar Reportes.
+            agencia->GraficarAvionesDisponibles();
             break;
         default:
             break;
@@ -208,8 +209,11 @@ Funcion para cargar los aviones.
 Recibe dos listas de aviones, una para aviones disponibles y otra para aviones en mantenimiento.
 Retorna un booleano, true si se cargaron los aviones correctamente, false si hubo un error.
 */
-bool CargaAviones(CircularDoublyLinkedList<avion> &listaAviones, CircularDoublyLinkedList<avion> &listaAviones2){
+bool CargaAviones(){
+    CircularDoublyLinkedList<avion>& Mantenimiento = agencia->getListAvionesMantenimiento();
+    ArbolB<avion>& Disponibles = agencia->getBtreeAvionesDisponibles();
     string path;
+
     cout << "\tIngrese la ruta del archivo JSON De Aviones: ";
     GetOp(path);
 
@@ -220,18 +224,16 @@ bool CargaAviones(CircularDoublyLinkedList<avion> &listaAviones, CircularDoublyL
         json jsonData = ReadJson(path);
 
         // Acceder a los datos
-        for (const auto& item : jsonData) { // Cambiar todo esto por una append a la estructura.
-            avion avionActual(item["vuelo"], item["numero_de_registro"], item["modelo"], item["fabricante"], item["ano_fabricacion"], item["capacidad"], item["peso_max_despegue"], item["aerolinea"], item["estado"]);
-            if (item["estado"] == "Disponible")
-                listaAviones.insert(avionActual);
-            else
-                listaAviones2.insert(avionActual);
+        for (const auto& item : jsonData) {
+            avion avionActual(item["vuelo"], item["numero_de_registro"], item["modelo"], item["capacidad"], item["ciudad_destino"], item["estado"]);
+            if (item["estado"] == "Disponible"){
+                Disponibles.insert(avionActual);
+            }else
+                Mantenimiento.insert(avionActual);
         }
     }catch(const std::exception& e){
         return false;
     }
-    cout << "\n\tSe tienen (" << listaAviones.getLength() << ") aviones en la lista de aviones disponibles." << endl;
-    cout << "\tSe tienen (" << listaAviones2.getLength() << ") aviones en la lista de aviones en mantenimiento." << endl;
 
     cout << "Presiona Enter para continuar...";
     _getch();  // Espera a que el usuario presione cualquier tecla
