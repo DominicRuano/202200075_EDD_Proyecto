@@ -14,10 +14,11 @@ Agencia* agencia = new Agencia();
 template <typename T>
 void GetOp(T &input);
 void Menu(int &input);
+void SubMenu(int& input);
 void FindByPasaPorte(DoublyLinkedList<Pasajero> &listaPasajeros);
 json ReadJson(string filePath);
 bool CargaAviones();
-bool EncolarClientes(Queue<Pasajero> &colaPasajeros);
+bool CargarPilotos();
 bool CargarMovimientos(CircularDoublyLinkedList<avion> &listaAviones, 
                         CircularDoublyLinkedList<avion> &listaAviones2, 
                         Queue<Pasajero> &colaPasajeros, 
@@ -34,7 +35,7 @@ int main(){
             while (!CargaAviones());
             break;
         case 2:
-            // Carga de pilotos.
+            while(!CargarPilotos());
             break;
         case 3:
             // Carga de Rutas.
@@ -43,22 +44,25 @@ int main(){
             // Carga de Movimientos.
             break;
         case 5:
-            /*
             SubMenu(input);
             switch (input){
             case 1:
-                // Recorrido en PreOrden.
+                cout << "\n\tRecorrido en InOrden:" << endl;
+                agencia->getArbolBBPilotos().InOrden();
                 break;
             case 2:
-                // Recorrido en InOrden.
+                cout << "\n\tRecorrido en PreOrden:" << endl;
+                agencia->getArbolBBPilotos().PreOrden();
                 break;
             case 3:
-                // Recorrido en PostOrden.
+                cout << "\n\tRecorrido en PostOrden:" << endl;
+                agencia->getArbolBBPilotos().PostOrden();
                 break;
-            default:    
+            default:
                 break;
             }
-            */
+            cout << "Presiona Enter para continuar...";
+            _getch();  // Espera a que el usuario presione cualquier tecla
             break;
         case 6:
             // Recomendar Rutas.
@@ -177,9 +181,9 @@ Funcion para cargar los clientes.
 Recibe una cola de pasajeros.
 Retorna un booleano, true si se cargaron los clientes correctamente, false si hubo un error.
 */
-bool EncolarClientes(Queue<Pasajero> &colaPasajeros){
+bool CargarPilotos(){
     string path;
-    cout << "\tIngrese la ruta del archivo JSON de Pasajeros: ";
+    cout << "\tIngrese la ruta del archivo JSON de Pilotos: ";
     GetOp(path);
 
     if (path == "exit")
@@ -189,15 +193,14 @@ bool EncolarClientes(Queue<Pasajero> &colaPasajeros){
         json jsonData = ReadJson(path);
 
         // Acceder a los datos
-        for (const auto& item : jsonData) { // Cambiar todo esto por una append a la estructura.
-            Pasajero PasajeroActual(item["nombre"], item["nacionalidad"], item["numero_de_pasaporte"], item["vuelo"], item["asiento"], item["destino"], item["origen"], item["equipaje_facturado"]);
-            colaPasajeros.enqueue(PasajeroActual);
+        for (const auto& item : jsonData) {
+            Piloto P(item["nombre"], item["nacionalidad"], item["numero_de_id"], item["vuelo"], item["horas_de_vuelo"], item["tipo_de_licencia"]);
+            agencia->getArbolBBPilotos().Insertar(P);
         }
     }catch(const std::exception& e){
         cout << "Se detecto un error: por favor verifique el path del archivo." << endl;
         return false;
     }
-    cout << "\n\tSe tienen (" << colaPasajeros.getLength() << ") Pasajeros en la cola." << endl;
 
     cout << "Presiona Enter para continuar...";
     _getch();  // Espera a que el usuario presione cualquier tecla
@@ -284,12 +287,12 @@ Funcion que imprime el submenu de opciones.
 Recibe como parametro un puntero de tipo int, el cual se encarga de recibir el valor del input del usuario.
 */
 void SubMenu(int& input){
-    cout << "----- Seleccione un Recorrido -----" << endl;
-    cout << "1. Recorrido en PreOrden." << endl;
-    cout << "2. Recorrido en InOrden." << endl;
-    cout << "3. Recorrido en PostOrden." << endl;
+    cout << "\n\t----- Seleccione un Recorrido -----" << endl;
+    cout << "\t1. Recorrido en InOrden." << endl;
+    cout << "\t2. Recorrido en PreOrden." << endl;
+    cout << "\t3. Recorrido en PostOrden." << endl;
 
-    cout << "Seleccione una opcion: ";
+    cout << "\tSeleccione una opcion: ";
     GetOp(input);
 }
 
