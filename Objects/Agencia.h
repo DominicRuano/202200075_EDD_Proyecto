@@ -5,10 +5,11 @@
 #include "../Structs/Queue.h"
 #include "../Structs/Stack.h"
 #include "../Structs/DoublyLinkedList.h"
+#include "../Structs/Btree.h"
 
 class Agencia{
 private:
-    CircularDoublyLinkedList<avion> *listaAvionesDisponibles;    /*Guarda aviones disponibles.*/
+    ArbolB<avion> *BtreeAvionesDisponibles;                      /*Guarda aviones disponibles.*/
     CircularDoublyLinkedList<avion> *listaAvionesMantenimiento;  /*Guarda aviones en mantenimiento.*/
     Queue<Pasajero> *colaPasajeros;                              /*Guarda en una cola a los pasajeros. */
     Stack<Pasajero> *pilaPasajeros;                              /*Guarda en una pila a los pasajeros. */
@@ -17,24 +18,24 @@ public:
     Agencia(/* args */);
     ~Agencia();
 
-    CircularDoublyLinkedList<avion> &getListAvionesDisponibles(){return *listaAvionesDisponibles;}
-    CircularDoublyLinkedList<avion> &getListAvionesMantenimiento(){return *listaAvionesMantenimiento;}
-    Queue<Pasajero> &getQueuePasajeros(){return *colaPasajeros;}
-    Stack<Pasajero> &getStackPasajeros(){return *pilaPasajeros;}
-    DoublyLinkedList<Pasajero> &getListPasajeros(){return *listaPasajeros;}
+    ArbolB<avion>& getBtreeAvionesDisponibles(){return *BtreeAvionesDisponibles;}
+    CircularDoublyLinkedList<avion>& getListAvionesMantenimiento(){return *listaAvionesMantenimiento;}
+    Queue<Pasajero>& getQueuePasajeros(){return *colaPasajeros;}
+    Stack<Pasajero>& getStackPasajeros(){return *pilaPasajeros;}
+    DoublyLinkedList<Pasajero>& getListPasajeros(){return *listaPasajeros;}
     void GraficarAvionesDisponibles();
 
 };
 
 Agencia::Agencia(/* args */){
-    this->listaAvionesDisponibles = new CircularDoublyLinkedList<avion>();
+    this->BtreeAvionesDisponibles = new ArbolB<avion>(5);
     this->listaAvionesMantenimiento = new CircularDoublyLinkedList<avion>();
     this->colaPasajeros = new Queue<Pasajero>();
     this->pilaPasajeros = new Stack<Pasajero>();
     this->listaPasajeros = new DoublyLinkedList<Pasajero>();
 }
 Agencia::~Agencia(){
-    delete listaAvionesDisponibles;
+    delete BtreeAvionesDisponibles;
     delete listaAvionesMantenimiento;
     delete colaPasajeros;
     delete pilaPasajeros;
@@ -50,8 +51,8 @@ void Agencia::GraficarAvionesDisponibles(){
     file << "agencia [label =\"Grafico de todas las estructuras de datos.\"]" << endl;
     file << "labelloc=t;" << endl;
     file << "labeljust=l;" << endl;
-    file << "agencia -> structA0[style=dotted];" << endl;
-    this->listaAvionesDisponibles->graph(file, "A", "Lista circular de aviones disponibles");
+    this->BtreeAvionesDisponibles->generateDot(file, "A", "Arbol B de aviones disponibles");
+    file << "agencia -> node0[style=dotted];" << endl;
     file << "agencia -> structB0[style=dotted];" << endl;
     this->listaAvionesMantenimiento->graph(file, "B", "Lista circular de aviones en mantenimiento");
     file << "agencia -> structC0[style=dotted];" << endl;
