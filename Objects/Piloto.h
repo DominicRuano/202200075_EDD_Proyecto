@@ -20,6 +20,7 @@ public:
     string getVuelo(){return Vuelo;}
     int getHorasDeVuelo(){return HorasDeVuelo;}
     string getTipoDeLicencia(){return TipoDeLicencia;}
+    string to_string(){return " " + Nombre +" | " + std::to_string(HorasDeVuelo) + " ";}
 
     friend ostream& operator<<(ostream& os, const Piloto& piloto);
 };
@@ -48,10 +49,6 @@ void Piloto::print(){
 
 ostream& operator<<(ostream& os, const Piloto& piloto) {
     os << "\tNombre: " << piloto.Nombre << endl;
-    os << "\tNacionalidad: " << piloto.Nacionalidad << endl;
-    os << "\tNumero de ID: " << piloto.NumeroDeID << endl;
-    os << "\tVuelo: " << piloto.Vuelo << endl;
     os << "\tHoras de Vuelo: " << piloto.HorasDeVuelo << endl;
-    os << "\tTipo de Licencia: " << piloto.TipoDeLicencia << endl;
     return os;
 }
