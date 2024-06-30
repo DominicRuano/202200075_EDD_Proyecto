@@ -27,17 +27,17 @@ private:
         int i = node->keys.size() - 1;
         if (node->isLeaf) {
             node->keys.push_back(k);
-            while (i >= 0 && node->keys[i] > k) {
+            while (i >= 0 && node->keys[i].getNumDeRegistro() > k.getNumDeRegistro()) {
                 node->keys[i + 1] = node->keys[i];
                 i--;
             }
             node->keys[i + 1] = k;
         } else {
-            while (i >= 0 && node->keys[i] > k)
+            while (i >= 0 && node->keys[i].getNumDeRegistro() > k.getNumDeRegistro())
                 i--;
             if (node->children[i + 1]->keys.size() == 2 * minDegree - 1) {
                 splitChild(node, i + 1, node->children[i + 1]);
-                if (node->keys[i + 1] < k)
+                if (node->keys[i + 1].getNumDeRegistro() < k.getNumDeRegistro())
                     i++;
             }
             insertNonFull(node->children[i + 1], k);
@@ -59,10 +59,10 @@ private:
 
     void generateDot(BNode* node, ofstream& out, int& count) const {
         int nodeId = count++;
-        out << "node" << nodeId << " [label=\"";
+        out << "\tnode" << nodeId << " [label=\"";
         out << "<f0>|";
         for (int i = 0; i < node->keys.size(); i++) {
-            out << "<f" << i << "> " << node->keys[i] << "| <f" << i + 1 << ">";
+            out << "<f" << i << "> &nbsp;&nbsp;" << node->keys[i].getNumDeRegistro() << "&nbsp;&nbsp;| <f" << i + 1 << ">";
             if (i != node->keys.size() - 1) {
                 out << "|";
             }
@@ -70,7 +70,7 @@ private:
         out << "\"];\n";
         int currentNodeId = nodeId;
         for (int i = 0; i < node->children.size(); i++) {
-            out << "\"node" << currentNodeId << "\":f" << i << " -> \"node" << count << "\";\n";
+            out << "\t\"node" << currentNodeId << "\":f" << i << " -> \"node" << count << "\";\n";
             generateDot(node->children[i], out, count);
         }
     }
@@ -281,17 +281,40 @@ public:
         }
     }
 
-    void generateDot(const string& filename) const {
-        ofstream out(filename);
-        if (!out.is_open()) {
-            cerr << "Error opening file for writing\n";
-            return;
-        }
-        out << "digraph BTree {\n";
-        out << "node [shape=record];\n";
+    void generateDot(ofstream &file, string ID, string str) const {
+        file << "subgraph cluster_" << ID << " {" << endl;
+        file << "\tnode [shape=record];" << endl;
+        file << "\tlabel=\"" << str << "\";" << endl;
+        file << "\tcolor=blue;" << endl;
         int count = 0;
-        generateDot(root, out, count);
-        out << "}\n";
-        out.close();
+        generateDot(root, file, count);
+        file << "}\n";
+    }
+
+    T* search(const T& k) {
+        return search(root, k);
+    }
+
+    T* search(BNode* node, const T& k) {
+        int i = 0;
+        while (i < node->keys.size() && k.getNumDeRegistro() > node->keys[i].getNumDeRegistro())
+            i++;
+        if (i < node->keys.size() && k.getNumDeRegistro() == node->keys[i].getNumDeRegistro())
+            return &node->keys[i];
+        if (node->isLeaf)
+            return nullptr;
+        return search(node->children[i], k);
+    }
+
+    ~ArbolB() {
+        if (root != nullptr)
+            delete root;
+    }
+
+    void Delete(string numDeRegistro){
+        T* avion = search(T(numDeRegistro));
+        if(avion != nullptr){
+            remove(*avion);
+        }
     }
 };
