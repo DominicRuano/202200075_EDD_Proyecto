@@ -9,14 +9,15 @@
 #include "../Structs/Btree.h"
 #include "../Structs/ArbolBB.h"
 #include "../Structs/HashTable.h"
+#include "../Structs/Grafo.h"
 
 class Agencia{
 private:
     ArbolB<avion> *BtreeAvionesDisponibles;                      /*Guarda aviones disponibles.*/
     CircularDoublyLinkedList<avion> *listaAvionesMantenimiento;  /*Guarda aviones en mantenimiento.*/
     ArbolBB<Piloto> *ArbolBBPilotos;                            /*Guarda los Pilotos en un arbol binario de busqueda. */
-    HashTable<Piloto> *HashTablePilotos;                              /*Guarda los  Pilotos en una tabla hash*/
-    DoublyLinkedList<Pasajero> *listaPasajeros;                  /*Guarda en una lista a los pasajeros. */
+    HashTable<Piloto> *HashTablePilotos;                              /*Guarda los  Pilotos en una tabla hash.*/
+    Grafo<string> *GrafoRutas;                  /*Guarda en un Grafo las rutas. */
 public:
     Agencia(/* args */);
     ~Agencia();
@@ -25,7 +26,7 @@ public:
     CircularDoublyLinkedList<avion>& getListAvionesMantenimiento(){return *listaAvionesMantenimiento;}
     ArbolBB<Piloto>& getArbolBBPilotos(){return *ArbolBBPilotos;}
     HashTable<Piloto>& getHashTablePilotos(){return *HashTablePilotos;}
-    DoublyLinkedList<Pasajero>& getListPasajeros(){return *listaPasajeros;}
+    Grafo<string>& getGrafoRutas(){return *GrafoRutas;}
     void GraficarAvionesDisponibles();
 
 };
@@ -35,14 +36,14 @@ Agencia::Agencia(/* args */){
     this->listaAvionesMantenimiento = new CircularDoublyLinkedList<avion>();
     this->ArbolBBPilotos = new ArbolBB<Piloto>();
     this->HashTablePilotos = new HashTable<Piloto>();
-    this->listaPasajeros = new DoublyLinkedList<Pasajero>();
+    this->GrafoRutas = new Grafo<string>(300);
 }
 Agencia::~Agencia(){
     delete BtreeAvionesDisponibles;
     delete listaAvionesMantenimiento;
     delete ArbolBBPilotos;
     delete HashTablePilotos;
-    delete listaPasajeros;
+    delete GrafoRutas;
 }
 
 void Agencia::GraficarAvionesDisponibles(){
@@ -61,10 +62,10 @@ void Agencia::GraficarAvionesDisponibles(){
     this->ArbolBBPilotos->graph(file, "C", "ArbolBB de pilotos");
     this->HashTablePilotos->graph(file, "D", "Tabla hash de pilotos");
     file << "agencia -> structD0[style=dotted];" << endl;
-    file << "agencia -> structE0[style=dotted];" << endl;
-    this->listaPasajeros->graph(file, "E", "Lista doblemente enlazada de pasajeros");
+    this->getGrafoRutas().generarReporte(file, "F", "Grafo de rutas");
     file << "}" << endl;
     file.close();
     system("dot -Tpng Reporte.dot -o Reporte.png");
     system("Reporte.png");
+
 }
