@@ -204,6 +204,7 @@ bool CargarRutas(){
 
     cout << "Presiona Enter para continuar...";
     _getch();  // Espera a que el usuario presione cualquier tecla
+    agencia->RutasCargadas = true;
     return true;
 }
 
@@ -237,6 +238,7 @@ bool CargarPilotos(){
 
     cout << "Presiona Enter para continuar...";
     _getch();  // Espera a que el usuario presione cualquier tecla
+    agencia->PilotosCargados = true;
     return true;
 }
 
@@ -273,6 +275,7 @@ bool CargaAviones(){
 
     cout << "Presiona Enter para continuar...";
     _getch();  // Espera a que el usuario presione cualquier tecla
+    agencia->AvionesCargados = true;
     return true;
 }
 
