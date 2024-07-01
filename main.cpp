@@ -18,6 +18,7 @@ void SubMenu(int& input);
 json ReadJson(string filePath);
 bool CargaAviones();
 bool CargarPilotos();
+bool CargarRutas();
 bool CargarMovimientos(CircularDoublyLinkedList<avion> &listaAviones, 
                         CircularDoublyLinkedList<avion> &listaAviones2, 
                         Queue<Pasajero> &colaPasajeros, 
@@ -37,7 +38,7 @@ int main(){
             while(!CargarPilotos());
             break;
         case 3:
-            // Carga de Rutas.
+            while(!CargarRutas());
             break;
         case 4:
             // Carga de Movimientos.
@@ -157,6 +158,55 @@ bool CargarMovimientos(CircularDoublyLinkedList<avion> &listaAviones, CircularDo
     _getch();  // Espera a que el usuario presione cualquier tecla
     return true;
 }
+
+/*
+Funcion para Cargar Rutas.
+No recibe parametros.
+Retorna un booleano, true si se cargaron los movimientos correctamente, false si hubo un error.
+*/
+bool CargarRutas(){
+    string path;
+    smatch matches;
+    regex pattern(R"(([A-Za-záéíóúÁÉÍÓÚñÑ]+)/([A-Za-záéíóúÁÉÍÓÚñÑ]+)/(\d+);)");
+
+    cout << "\tIngrese la ruta del archivo de Rutas: ";
+    GetOp(path);
+
+    if (path == "exit")
+        return true;
+
+    try{
+        ifstream inputFile(path); // Abrir el archivo
+
+        // Verificar si el archivo se abrió correctamente
+        if (!inputFile.is_open()) {
+            std::cerr << "No se pudo abrir el archivo." << std::endl;
+            return false; 
+        }
+
+        string line;
+        // Leer el archivo línea por línea
+        while (std::getline(inputFile, line)) {
+            regex_search(line, matches, pattern);
+            cout << "Origen: [" << matches[1] << "] Destino: [" << matches[2] << "] Peso: [" << matches[3] << "]" << endl;
+            agencia->getGrafoRutas().nuevoVertice(matches[1]);
+            agencia->getGrafoRutas().nuevoVertice(matches[2]);
+            agencia->getGrafoRutas().nuevoArco(matches[1], matches[2], stoi(matches[3]));
+        }
+
+        inputFile.close(); // Cerrar el archivo
+    }catch(const std::exception& e){
+        cout << e.what() << endl;
+        cout << "Error: Presiona Enter para continuar...";
+        _getch();  // Espera a que el usuario presione cualquier tecla
+        return false;
+    }
+
+    cout << "Presiona Enter para continuar...";
+    _getch();  // Espera a que el usuario presione cualquier tecla
+    return true;
+}
+
 
 /*
 Funcion para cargar los clientes.
