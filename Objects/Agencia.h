@@ -48,6 +48,7 @@ Agencia::Agencia(/* args */){
     this->PilotosCargados = false;
     this->RutasCargadas = false;
 }
+
 Agencia::~Agencia(){
     delete BtreeAvionesDisponibles;
     delete listaAvionesMantenimiento;
