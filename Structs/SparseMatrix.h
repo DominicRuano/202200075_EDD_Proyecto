@@ -129,6 +129,8 @@ SparseMatrix<T>::~SparseMatrix(){
             delete temp;
             temp = temp2;
         }
-        Current = Current->getDown();
+        Nodo<T>* temp3 = Current->getDown();
+        delete Current;
+        Current = temp3;
     }
 }
