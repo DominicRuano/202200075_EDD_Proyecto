@@ -62,7 +62,7 @@ void HashTable<T>::graph(ofstream &file, string ID, string str){
     int aux = 0;
     file << "subgraph cluster_" << ID << " {" << endl;
     file << "\tlabel=\"" << str << "\"; \n\tnode [shape=hexagon, style=filled, fillcolor=lightblue];" << endl;
-    file << "\tcolor=red;" << endl;
+    file << "\tcolor=green;" << endl;
     for (int i = 0; i < size; i++){
         if (table[i].getHead() != nullptr){
             file << "\tstruct" << ID << i << "[label=\"" << i << "\"];" << endl;
@@ -74,5 +74,7 @@ void HashTable<T>::graph(ofstream &file, string ID, string str){
             }
         }
     }
+    if (aux == 0)
+        file << "\tstruct" << ID << "0 [label=\"Tabla vacía\", margin=0, shape=box, style=filled, color=none, fillcolor=none];" << endl;
     file << "}" << endl;
 }
