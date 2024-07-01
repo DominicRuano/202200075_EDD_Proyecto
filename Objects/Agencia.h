@@ -8,13 +8,14 @@
 #include "../Structs/DoublyLinkedList.h"
 #include "../Structs/Btree.h"
 #include "../Structs/ArbolBB.h"
+#include "../Structs/HashTable.h"
 
 class Agencia{
 private:
     ArbolB<avion> *BtreeAvionesDisponibles;                      /*Guarda aviones disponibles.*/
     CircularDoublyLinkedList<avion> *listaAvionesMantenimiento;  /*Guarda aviones en mantenimiento.*/
-    ArbolBB<Piloto> *ArbolBBPilotos;                              /*Guarda los Pilotos en un arbol binario de busqueda. */
-    Stack<Pasajero> *pilaPasajeros;                              /*Guarda en una pila a los pasajeros. */
+    ArbolBB<Piloto> *ArbolBBPilotos;                            /*Guarda los Pilotos en un arbol binario de busqueda. */
+    HashTable<Piloto> *HashTablePilotos;                              /*Guarda los  Pilotos en una tabla hash*/
     DoublyLinkedList<Pasajero> *listaPasajeros;                  /*Guarda en una lista a los pasajeros. */
 public:
     Agencia(/* args */);
@@ -23,7 +24,7 @@ public:
     ArbolB<avion>& getBtreeAvionesDisponibles(){return *BtreeAvionesDisponibles;}
     CircularDoublyLinkedList<avion>& getListAvionesMantenimiento(){return *listaAvionesMantenimiento;}
     ArbolBB<Piloto>& getArbolBBPilotos(){return *ArbolBBPilotos;}
-    Stack<Pasajero>& getStackPasajeros(){return *pilaPasajeros;}
+    HashTable<Piloto>& getHashTablePilotos(){return *HashTablePilotos;}
     DoublyLinkedList<Pasajero>& getListPasajeros(){return *listaPasajeros;}
     void GraficarAvionesDisponibles();
 
@@ -33,14 +34,14 @@ Agencia::Agencia(/* args */){
     this->BtreeAvionesDisponibles = new ArbolB<avion>(5);
     this->listaAvionesMantenimiento = new CircularDoublyLinkedList<avion>();
     this->ArbolBBPilotos = new ArbolBB<Piloto>();
-    this->pilaPasajeros = new Stack<Pasajero>();
+    this->HashTablePilotos = new HashTable<Piloto>();
     this->listaPasajeros = new DoublyLinkedList<Pasajero>();
 }
 Agencia::~Agencia(){
     delete BtreeAvionesDisponibles;
     delete listaAvionesMantenimiento;
     delete ArbolBBPilotos;
-    delete pilaPasajeros;
+    delete HashTablePilotos;
     delete listaPasajeros;
 }
 
@@ -58,8 +59,8 @@ void Agencia::GraficarAvionesDisponibles(){
     file << "agencia -> structB0[style=dotted];" << endl;
     this->listaAvionesMantenimiento->graph(file, "B", "Lista circular de aviones en mantenimiento");
     this->ArbolBBPilotos->graph(file, "C", "ArbolBB de pilotos");
+    this->HashTablePilotos->graph(file, "D", "Tabla hash de pilotos");
     file << "agencia -> structD0[style=dotted];" << endl;
-    this->pilaPasajeros->graph(file, "D", "Pila de pasajeros");
     file << "agencia -> structE0[style=dotted];" << endl;
     this->listaPasajeros->graph(file, "E", "Lista doblemente enlazada de pasajeros");
     file << "}" << endl;
