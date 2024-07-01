@@ -15,7 +15,6 @@ template <typename T>
 void GetOp(T &input);
 void Menu(int &input);
 void SubMenu(int& input);
-void FindByPasaPorte(DoublyLinkedList<Pasajero> &listaPasajeros);
 json ReadJson(string filePath);
 bool CargaAviones();
 bool CargarPilotos();
@@ -75,23 +74,6 @@ int main(){
         }
     }
     return 0;
-}
-
-/*
-Funcion para buscar un pasajero por su pasaporte.
-Recibe una lista de pasajeros.
-*/
-void FindByPasaPorte(DoublyLinkedList<Pasajero> &listaPasajeros){
-    string pasaporte;
-    cout << "\tIngrese el No.Pasaporte a consultar: ";
-    GetOp(pasaporte);
-    
-    if (pasaporte == "exit")
-        return;
-
-    listaPasajeros.consultar(pasaporte);
-    cout << "Presiona Enter para continuar...";
-    _getch();  // Espera a que el usuario presione cualquier tecla
 }
 
 /*
