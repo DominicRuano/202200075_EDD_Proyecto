@@ -4,8 +4,8 @@ template <class T>
 class DoublyLinkedList{
 private:
     Nodo<T> *head;
-    int length = 0;
 public:
+    int length = 0;
     DoublyLinkedList(/* args */);
     ~DoublyLinkedList();
 
