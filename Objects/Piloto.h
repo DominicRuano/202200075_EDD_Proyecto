@@ -11,6 +11,7 @@ private:
     string TipoDeLicencia;
 public:
     Piloto(string Nombre, string Nacionalidad, string NumeroDeID, string Vuelo, int HorasDeVuelo, string TipoDeLicencia);
+    Piloto();
     ~Piloto();
 
     void print();
@@ -24,6 +25,15 @@ public:
 
     friend ostream& operator<<(ostream& os, const Piloto& piloto);
 };
+
+Piloto::Piloto(){
+    this->Nombre = "";
+    this->Nacionalidad = "";
+    this->NumeroDeID = "";
+    this->Vuelo = "";
+    this->HorasDeVuelo = 0;
+    this->TipoDeLicencia = "";
+}
 
 Piloto::Piloto(string Nombre, string Nacionalidad, string NumeroDeID, string Vuelo, int HorasDeVuelo, string TipoDeLicencia){
     this->Nombre = Nombre;

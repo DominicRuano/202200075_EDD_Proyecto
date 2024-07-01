@@ -10,6 +10,9 @@
 #include "../Structs/ArbolBB.h"
 #include "../Structs/HashTable.h"
 #include "../Structs/Grafo.h"
+#include "../Structs/SparseMatrix.h"
+#include <string>
+#include <iostream>
 
 class Agencia{
 private:
@@ -18,6 +21,7 @@ private:
     ArbolBB<Piloto> *ArbolBBPilotos;                                /*Guarda los Pilotos en un arbol binario de busqueda. */
     HashTable<Piloto> *HashTablePilotos;                            /*Guarda los  Pilotos en una tabla hash.*/
     Grafo<string> *GrafoRutas;                                      /*Guarda en un Grafo las rutas. */
+    SparseMatrix<Piloto> *Matrix;                                   /*Guarda los Pilotos en una matriz. */
 
 public:
     Agencia(/* args */);
@@ -28,8 +32,11 @@ public:
     ArbolBB<Piloto>& getArbolBBPilotos(){return *ArbolBBPilotos;}
     HashTable<Piloto>& getHashTablePilotos(){return *HashTablePilotos;}
     Grafo<string>& getGrafoRutas(){return *GrafoRutas;}
+    SparseMatrix<Piloto>& getMatrix(){return *Matrix;}
+
     bool MatrixIsReady(){return AvionesCargados && PilotosCargados && RutasCargadas;}
 
+    void Generarmatrix();
     void GraficarAvionesDisponibles();
 
     bool AvionesCargados;
@@ -43,6 +50,7 @@ Agencia::Agencia(/* args */){
     this->ArbolBBPilotos = new ArbolBB<Piloto>();
     this->HashTablePilotos = new HashTable<Piloto>();
     this->GrafoRutas = new Grafo<string>(300);
+    this->Matrix = new SparseMatrix<Piloto>();
 
     this->AvionesCargados = false;
     this->PilotosCargados = false;
@@ -58,6 +66,8 @@ Agencia::~Agencia(){
 }
 
 void Agencia::GraficarAvionesDisponibles(){
+    //if (MatrixIsReady()){ Generarmatrix(); }
+    
     ofstream file;
     file.open("Reporte.dot");
     file << "digraph G {" << endl;
@@ -78,5 +88,20 @@ void Agencia::GraficarAvionesDisponibles(){
     file.close();
     system("dot -Tpng Reporte.dot -o Reporte.png");
     system("Reporte.png");
+}
 
+void Agencia::Generarmatrix(){
+    DoublyLinkedList<Piloto>* Pilotos = ArbolBBPilotos->getPilotos();
+    Nodo<Piloto>* Current = Pilotos->getHead();
+
+    while (Current != nullptr){
+        string Vuelo = Current->getData().getVuelo();
+        avion* CurrentAvion = BtreeAvionesDisponibles->find(Vuelo);
+        //string Destino = CurrentAvion->ciudadDestino;
+        if (CurrentAvion != nullptr){
+            cout << "Vuelo: " << Vuelo << " Destino: " << CurrentAvion->ciudadDestino << " Piloto: " << Current->getData().getNombre() << endl;
+            Matrix->Insertar(Vuelo, CurrentAvion->ciudadDestino, Current->getData());
+        }
+        Current = Current->getNext();
+    }
 }

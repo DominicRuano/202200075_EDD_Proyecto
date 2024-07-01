@@ -13,7 +13,6 @@ public:
     Nodo<T>* down;
     Nodo<T>* up;
 
-    Nodo(){}
     Nodo(const T& value) : data(value), next(nullptr), prev(nullptr) {}
     Nodo(const string F, string C) : fila(F), columna(C) , next(nullptr), prev(nullptr) {}
 
@@ -21,10 +20,10 @@ public:
     void setData(const T& value) {data = value;}
 
     string getFila() const {return fila;}
-    void setFila(int value) {fila = value;}
+    void setFila(string value) {fila = value;}
 
     string getColumna() const {return columna;}
-    void setColumna(int value) {columna = value;}
+    void setColumna(string value) {columna = value;}
 
     Nodo<T>* getNext() const {return next;}
     void setNext(Nodo<T>* node) {next = node;}

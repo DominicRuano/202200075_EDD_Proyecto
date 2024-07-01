@@ -3,14 +3,13 @@
 using namespace std;
 
 class avion{
-private:
+public:
     string vuelo;
     string numDeRegistro;
     string modelo;
     int capacidad;
     string ciudadDestino;
     string estado;  
-public:
     avion(string vuelo, 
             string numDeRegistro, 
             string modelo, 
@@ -25,6 +24,7 @@ public:
     string getVuelo(){return vuelo;}
     string getNumDeRegistro()const{return numDeRegistro;}
     string getEstado(){return estado;}
+    string getDestino(){return ciudadDestino;}
 };
 
 avion::avion(string vuelo, string numDeRegistro, string modelo, int capacidad, string ciudadDestino, string estado){

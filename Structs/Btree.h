@@ -236,7 +236,26 @@ private:
             cout << "The tree is empty\n";
     }
 
+    T* find(BNode* node, string vuelo){
+        int i = 0;
+        while (i < node->keys.size() && node->keys[i].getVuelo() != vuelo)
+            i++;
+        if (i < node->keys.size() && node->keys[i].getVuelo() == vuelo)
+            return &node->keys[i];
+        if (node->isLeaf)
+            return nullptr;
+        for (int i = 0; i < node->children.size(); i++){
+            T* encontrado = find(node->children[i], vuelo);        
+            if (encontrado != nullptr) return encontrado;
+        }
+        return nullptr;
+    }
+
 public:
+    T* find(string vuelo){
+        return find(root, vuelo);
+    }
+
     ArbolB(int t) : minDegree(t) {
         root = new BNode(t, true);
     }

@@ -10,7 +10,7 @@ public:
     SparseMatrix(/* args */);
     ~SparseMatrix();
 
-    Nodo<T>* getHead(){return head;}
+    Nodo<string>* getHead(){return head;}
 
     Nodo<T>* BuscarFil(string fila);
     Nodo<T>* BuscarCol(string columna);
@@ -24,6 +24,7 @@ public:
 */
 template <class T>
 void SparseMatrix<T>::Insertar(string fila, string columna, T data){
+    cout << "Here" << endl;
     Nodo<T>* New = new Nodo<T>(data);
     New->setColumna(columna);
     Nodo<T>* CurrentFil = BuscarFil(fila);
@@ -64,8 +65,8 @@ Nodo<T>* SparseMatrix<T>::CrearCol(string columna){
     Nodo<T>* Current = head;
     while (Current->getNext() != nullptr)
         Current = Current->getNext();
-    Nodo<string>* New = new Nodo<string>("-1",columna);
-    New->setFila(-1);
+    Nodo<T>* New = new Nodo<T>("-1",columna);
+    New->setFila("-1");
     New->setColumna(columna);
     New->setNext(Current->getNext());
     Current->setNext(New);
@@ -80,9 +81,9 @@ Nodo<T>* SparseMatrix<T>::CrearFil(string fila){
     Nodo<T>* Current = head;
     while (Current->getDown() != nullptr)
         Current = Current->getDown();
-    Nodo<string>* New = new Nodo<string>(fila, "-1");
+    Nodo<T>* New = new Nodo<T>(fila, "-1");
     New->setFila(fila);
-    New->setColumna(-1);
+    New->setColumna("-1");
     New->setDown(Current->getDown());
     Current->setDown(New);
     return New;
@@ -116,7 +117,7 @@ Nodo<T>* SparseMatrix<T>::BuscarFil(string fila){
 
 template <class T>
 SparseMatrix<T>::SparseMatrix(/* args */){
-    head = Nodo<string>("-1","-1");
+    head = nullptr;
 }
 
 template <class T>

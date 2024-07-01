@@ -188,7 +188,6 @@ bool CargarRutas(){
         // Leer el archivo línea por línea
         while (std::getline(inputFile, line)) {
             regex_search(line, matches, pattern);
-            cout << "Origen: [" << matches[1] << "] Destino: [" << matches[2] << "] Peso: [" << matches[3] << "]" << endl;
             agencia->getGrafoRutas().nuevoVertice(matches[1]);
             agencia->getGrafoRutas().nuevoVertice(matches[2]);
             agencia->getGrafoRutas().nuevoArco(matches[1], matches[2], stoi(matches[3]));

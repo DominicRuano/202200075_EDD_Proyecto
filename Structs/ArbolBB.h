@@ -1,4 +1,5 @@
 #include "../Objects/nodo.h"
+//#include "../Structs/DoublyLinkedList.h"
 using namespace std;
 
 template <typename T>
@@ -11,6 +12,7 @@ public:
 
     bool estaVacion(){return root == nullptr;}
     Nodo<T>* getRoot(){return root;}
+    DoublyLinkedList<T>* getPilotos(){return Pilotos;}
     
     void Insertar(T dato);
     Nodo<T>* Insertar(Nodo<T>* nodo, T dato);
@@ -22,11 +24,16 @@ public:
     void PostOrden(Nodo<T>* nodo);
     void graph(ofstream &file, string ID, string str);
     void InOrdenGraficar(Nodo<T>* nodo, ofstream &file, string ID, int& i);
+
+    DoublyLinkedList<T>* Pilotos;
+
+
 };
 
 template <typename T>
 ArbolBB<T>::ArbolBB(/* args */){
     root = nullptr;
+    Pilotos = new DoublyLinkedList<T>();
 }
 
 template <typename T>
@@ -37,6 +44,7 @@ ArbolBB<T>::~ArbolBB(){
 template <typename T>
 void ArbolBB<T>::Insertar(T dato){
     root = Insertar(root, dato);
+    Pilotos->addEnd(dato);
 }
 
 template <typename T>
@@ -136,4 +144,3 @@ void ArbolBB<T>::InOrdenGraficar(Nodo<T>* nodo, ofstream &file, string ID, int& 
     InOrdenGraficar(nodo->next, file, ID, i);
     InOrdenGraficar(nodo->prev, file, ID, i);
 }
-
