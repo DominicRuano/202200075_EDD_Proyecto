@@ -13,6 +13,7 @@ public:
     Nodo<T>* down;
     Nodo<T>* up;
 
+    Nodo(){}
     Nodo(const T& value) : data(value), next(nullptr), prev(nullptr) {}
     Nodo(const string F, string C) : fila(F), columna(C) , next(nullptr), prev(nullptr) {}
 
