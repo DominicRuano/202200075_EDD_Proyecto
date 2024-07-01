@@ -13,11 +13,12 @@
 
 class Agencia{
 private:
-    ArbolB<avion> *BtreeAvionesDisponibles;                      /*Guarda aviones disponibles.*/
-    CircularDoublyLinkedList<avion> *listaAvionesMantenimiento;  /*Guarda aviones en mantenimiento.*/
-    ArbolBB<Piloto> *ArbolBBPilotos;                            /*Guarda los Pilotos en un arbol binario de busqueda. */
-    HashTable<Piloto> *HashTablePilotos;                              /*Guarda los  Pilotos en una tabla hash.*/
-    Grafo<string> *GrafoRutas;                  /*Guarda en un Grafo las rutas. */
+    ArbolB<avion> *BtreeAvionesDisponibles;                         /*Guarda aviones disponibles.*/
+    CircularDoublyLinkedList<avion> *listaAvionesMantenimiento;     /*Guarda aviones en mantenimiento.*/
+    ArbolBB<Piloto> *ArbolBBPilotos;                                /*Guarda los Pilotos en un arbol binario de busqueda. */
+    HashTable<Piloto> *HashTablePilotos;                            /*Guarda los  Pilotos en una tabla hash.*/
+    Grafo<string> *GrafoRutas;                                      /*Guarda en un Grafo las rutas. */
+
 public:
     Agencia(/* args */);
     ~Agencia();
@@ -27,8 +28,13 @@ public:
     ArbolBB<Piloto>& getArbolBBPilotos(){return *ArbolBBPilotos;}
     HashTable<Piloto>& getHashTablePilotos(){return *HashTablePilotos;}
     Grafo<string>& getGrafoRutas(){return *GrafoRutas;}
+    bool MatrixIsReady(){return AvionesCargados && PilotosCargados && RutasCargadas;}
+
     void GraficarAvionesDisponibles();
 
+    bool AvionesCargados;
+    bool PilotosCargados;
+    bool RutasCargadas;
 };
 
 Agencia::Agencia(/* args */){
@@ -37,6 +43,10 @@ Agencia::Agencia(/* args */){
     this->ArbolBBPilotos = new ArbolBB<Piloto>();
     this->HashTablePilotos = new HashTable<Piloto>();
     this->GrafoRutas = new Grafo<string>(300);
+
+    this->AvionesCargados = false;
+    this->PilotosCargados = false;
+    this->RutasCargadas = false;
 }
 Agencia::~Agencia(){
     delete BtreeAvionesDisponibles;
