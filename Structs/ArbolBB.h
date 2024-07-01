@@ -119,7 +119,7 @@ void ArbolBB<T>::graph(ofstream &file, string ID, string str){
         file << "\tstruct" << ID << "0 [label=\"ArbolBB Vacio!\"];\n}\nagencia -> structC0[style=dotted];" << endl;
         return;
     }
-    file << "}\n agencia -> \"" << root->data.to_string() << "\"" << endl;
+    file << "}\n agencia -> \"" << root->data.to_string() << "\" [style=dotted]" << endl;
 
 }
 
