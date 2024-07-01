@@ -196,6 +196,7 @@ bool CargarPilotos(){
         for (const auto& item : jsonData) {
             Piloto P(item["nombre"], item["nacionalidad"], item["numero_de_id"], item["vuelo"], item["horas_de_vuelo"], item["tipo_de_licencia"]);
             agencia->getArbolBBPilotos().Insertar(P);
+            agencia->getHashTablePilotos().insert(P);
         }
     }catch(const std::exception& e){
         cout << "Se detecto un error: por favor verifique el path del archivo." << endl;
