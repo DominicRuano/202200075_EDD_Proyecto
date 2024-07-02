@@ -91,7 +91,7 @@ void HashTable<T>::graph(ofstream &file, string ID, string str){
             file << "\tstruct" << ID << i << "[label=\"" << i << "\"];" << endl;
             Nodo<T> *current = table[i].getHead();
             while (current != nullptr){
-                file << "\tstruct" << ID << i << " -> " << current->data.getNumeroDeID() << endl;
+                file << "\tstruct" << ID << i << " -> \"" << current->data.getNumeroDeID() << "|" << current->data.getNombre() << "\"" << endl;
                 current = current->next;
                 aux++;
             }
