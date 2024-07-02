@@ -24,6 +24,7 @@ public:
     void PostOrden(Nodo<T>* nodo);
     void graph(ofstream &file, string ID, string str);
     void InOrdenGraficar(Nodo<T>* nodo, ofstream &file, string ID, int& i);
+    void eliminar(int ID);
 
     DoublyLinkedList<T>* Pilotos;
 
@@ -143,4 +144,68 @@ void ArbolBB<T>::InOrdenGraficar(Nodo<T>* nodo, ofstream &file, string ID, int& 
     }
     InOrdenGraficar(nodo->next, file, ID, i);
     InOrdenGraficar(nodo->prev, file, ID, i);
+}
+
+template <typename T>
+void ArbolBB<T>::eliminar(int ID){
+    Nodo<T>* current = root;
+    Nodo<T>* parent = nullptr;
+    while (current != nullptr){
+        if (current->data.getHorasDeVuelo() == ID){
+            if (current->prev == nullptr && current->next == nullptr){
+                if (parent == nullptr){
+                    root = nullptr;
+                }else if (parent->prev == current){
+                    parent->prev = nullptr;
+                }else{
+                    parent->next = nullptr;
+                }
+                delete current;
+                return;
+            }
+            if (current->prev == nullptr){
+                if (parent == nullptr){
+                    root = current->next;
+                }else if (parent->prev == current){
+                    parent->prev = current->next;
+                }else{
+                    parent->next = current->next;
+                }
+                delete current;
+                return;
+            }
+            if (current->next == nullptr){
+                if (parent == nullptr){
+                    root = current->prev;
+                }else if (parent->prev == current){
+                    parent->prev = current->prev;
+                }else{
+                    parent->next = current->prev;
+                }
+                delete current;
+                return;
+            }
+            Nodo<T>* temp = current->next;
+            Nodo<T>* tempParent = current;
+            while (temp->prev != nullptr){
+                tempParent = temp;
+                temp = temp->prev;
+            }
+            current->data = temp->data;
+            if (tempParent->prev == temp){
+                tempParent->prev = temp->next;
+            }else{
+                tempParent->next = temp->next;
+            }
+            delete temp;
+            return;
+        }
+        parent = current;
+        if (ID > current->data.getHorasDeVuelo()){
+            current = current->next;
+        }else{
+            current = current->prev;
+        }
+    }
+    throw std::out_of_range("Piloto no encontrado.\n");
 }
