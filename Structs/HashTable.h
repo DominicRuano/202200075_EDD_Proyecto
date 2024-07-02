@@ -17,6 +17,7 @@ public:
     void insert(T &val);
     T* search(string key);
     void graph(ofstream &file, string ID, string str);
+    int eliminar(string key);
 };
 
 template <class T>
@@ -56,6 +57,28 @@ T* HashTable<T>::search(string key){
     }
     return nullptr;
 }
+
+template <class T>
+int HashTable<T>::eliminar(string key){
+    int index = hashFunction(key);
+    Nodo<T> *current = table[index].getHead();
+    Nodo<T> *prev = nullptr;
+    while (current != nullptr){
+        if (current->data.getNumeroDeID() == key){
+            if (prev == nullptr)
+                table[index].setHead(current->next);
+            else
+                prev->next = current->next;
+            int val = current->data.getHorasDeVuelo();
+            delete current;
+            return val;
+        }
+        prev = current;
+        current = current->next;
+    }
+    return -1;
+}
+
 
 template <class T>
 void HashTable<T>::graph(ofstream &file, string ID, string str){
