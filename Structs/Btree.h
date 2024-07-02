@@ -78,14 +78,14 @@ private:
     void remove(BNode* node, const T& k) {
         int idx = findKey(node, k);
 
-        if (idx < node->keys.size() && node->keys[idx] == k) {
+        if (idx < node->keys.size() && node->keys[idx].getNumDeRegistro() == k.getNumDeRegistro()) {
             if (node->isLeaf)
                 removeFromLeaf(node, idx);
             else
                 removeFromNonLeaf(node, idx);
         } else {
             if (node->isLeaf) {
-                cout << "The key " << k << " does not exist in the tree.\n";
+                cout << "The key " << k.getNumDeRegistro() << " does not exist in the tree.\n";
                 return;
             }
 
@@ -103,7 +103,7 @@ private:
 
     int findKey(BNode* node, const T& k) {
         int idx = 0;
-        while (idx < node->keys.size() && node->keys[idx] < k)
+        while (idx < node->keys.size() && node->keys[idx].getNumDeRegistro() < k.getNumDeRegistro())
             ++idx;
         return idx;
     }
@@ -238,9 +238,9 @@ private:
 
     T* find(BNode* node, string vuelo){
         int i = 0;
-        while (i < node->keys.size() && node->keys[i].getVuelo() != vuelo)
+        while (i < node->keys.size() && node->keys[i].getNumDeRegistro() != vuelo)
             i++;
-        if (i < node->keys.size() && node->keys[i].getVuelo() == vuelo)
+        if (i < node->keys.size() && node->keys[i].getNumDeRegistro() == vuelo)
             return &node->keys[i];
         if (node->isLeaf)
             return nullptr;
