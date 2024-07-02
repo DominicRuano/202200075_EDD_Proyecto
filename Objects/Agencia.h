@@ -45,7 +45,7 @@ public:
 };
 
 Agencia::Agencia(/* args */){
-    this->BtreeAvionesDisponibles = new ArbolB<avion>(5);
+    this->BtreeAvionesDisponibles = new ArbolB<avion>(3);
     this->listaAvionesMantenimiento = new CircularDoublyLinkedList<avion>();
     this->ArbolBBPilotos = new ArbolBB<Piloto>();
     this->HashTablePilotos = new HashTable<Piloto>();
