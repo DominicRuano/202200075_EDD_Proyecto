@@ -20,6 +20,7 @@ bool CargaAviones();
 bool CargarPilotos();
 bool CargarRutas();
 bool CargarMovimientos();
+bool RecomendarRuta();
 
 int main(){
     int input;      // Guarda el valor seleccionado por el usuario.
@@ -61,7 +62,7 @@ int main(){
             _getch();  // Espera a que el usuario presione cualquier tecla
             break;
         case 6:
-            // Recomendar Rutas.
+            while(!RecomendarRuta());
             break;
         case 7:
             agencia->GraficarAvionesDisponibles();
@@ -71,6 +72,34 @@ int main(){
         }
     }
     return 0;
+}
+
+bool RecomendarRuta(){
+    string origen, destino;
+    int opcion;
+    do{
+        cout << "\tIngrese la ciudad de origen: ";
+        GetOp(origen);
+        opcion = agencia->getGrafoRutas().existeVertice(origen);
+        if (opcion == -1)
+            cout << "\tLa ciudad de origen no existe." << endl;
+        if (origen == "exit")
+            return true;
+    } while (opcion < 0);
+    do{
+        cout << "\tIngrese la ciudad de destino: ";
+        GetOp(destino);
+        opcion = agencia->getGrafoRutas().existeVertice(destino);
+        if (opcion == -1)
+            cout << "\tLa ciudad de destino no existe." << endl;
+        if (destino == "exit")
+            return true;
+    } while (opcion < 0);
+
+    agencia->getGrafoRutas().CaminoMasCorto(origen, destino);
+    cout << "Presiona Enter para continuar...";
+_getch();  // Espera a que el usuario presione cualquier tecla
+    return true;
 }
 
 /*
