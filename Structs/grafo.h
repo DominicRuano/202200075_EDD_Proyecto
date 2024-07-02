@@ -24,6 +24,8 @@ public:
     void nuevoArco(string nom1, string nom2, int peso);
     void imprimirMatriz();
     void generarReporte(ofstream &file, string ID, string str);
+    void CaminoMasCorto(string origen, string destino);
+    int minDistancia(int dist[], bool sptSet[]);
 };
 
 template <class T>
@@ -110,4 +112,58 @@ void Grafo<T>::generarReporte(ofstream &file, string ID, string str){
     }
     file << "}" << endl;
     file << "agencia -> " << vertices[0]->data <<"[style=dotted];" << endl;
+}
+
+template <class T>
+void Grafo<T>::CaminoMasCorto(string origen1, string destino1){
+    int origen = existeVertice(origen1);
+    int destino = existeVertice(destino1);
+
+    int* dist = new int[maxVertices];
+    bool* sptSet = new bool[maxVertices];
+    int* parent = new int[maxVertices];
+
+    for (int i = 0; i < maxVertices; i++) {
+        dist[i] = 99999;      // define distancia inf o maxima para los vertices.
+        sptSet[i] = false;      // indica que aun no se revisa.
+        parent[i] = -1;         // indica que no hay padre aun.
+    }
+
+    dist[origen] = 0;           // define 0 del origen al origen.
+
+    for (int count = 0; count < maxVertices - 1; count++) {
+        int u = minDistancia(dist, sptSet);
+        sptSet[u] = true;
+
+        for (int v = 0; v < maxVertices; v++) {
+            if (!sptSet[v] && matrizAdy[u][v] != -1 && dist[u] != 99999 && dist[u] + matrizAdy[u][v] < dist[v]) {
+                parent[v] = u;
+                dist[v] = dist[u] + matrizAdy[u][v];
+            }
+        }
+    }
+
+    string path, auxiliar;
+    for (int v = destino; v != -1; v = parent[v]) {
+        auxiliar = vertices[v]->data;
+        path = auxiliar + " -> " + path;
+    }
+
+    delete[] dist;
+    delete[] sptSet;
+    delete[] parent;
+
+    cout << "El camino más corto es: " << path << endl;
+}
+
+template <class T>
+int Grafo<T>::minDistancia(int dist[], bool sptSet[]) {
+    int min = 99999, min_index;
+    for (int v = 0; v < maxVertices; v++) {
+        if (!sptSet[v] && dist[v] <= min) {
+            min = dist[v];
+            min_index = v;
+        }
+    }
+    return min_index;
 }
