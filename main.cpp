@@ -19,11 +19,7 @@ json ReadJson(string filePath);
 bool CargaAviones();
 bool CargarPilotos();
 bool CargarRutas();
-bool CargarMovimientos(CircularDoublyLinkedList<avion> &listaAviones, 
-                        CircularDoublyLinkedList<avion> &listaAviones2, 
-                        Queue<Pasajero> &colaPasajeros, 
-                        Stack<Pasajero> &pilaPasajeros, 
-                        DoublyLinkedList<Pasajero> &listaPasajeros);
+bool CargarMovimientos();
 
 int main(){
     int input;      // Guarda el valor seleccionado por el usuario.
@@ -41,7 +37,7 @@ int main(){
             while(!CargarRutas());
             break;
         case 4:
-            // Carga de Movimientos.
+            while(!CargarMovimientos());
             break;
         case 5:
             SubMenu(input);
@@ -82,11 +78,12 @@ Funcion para cargar los movimientos.
 aun no recibe parametros.
 Retorna un booleano, true si se cargaron los movimientos correctamente, false si hubo un error.
 */
-bool CargarMovimientos(CircularDoublyLinkedList<avion> &listaAviones, CircularDoublyLinkedList<avion> &listaAviones2, Queue<Pasajero> &colaPasajeros, Stack<Pasajero> &pilaPasajeros, DoublyLinkedList<Pasajero> &listaPasajeros){
+bool CargarMovimientos(){
     string path;
     smatch matches;
     regex pattern1(R"(MantenimientoAviones,Ingreso,([^;]+);)");
     regex pattern2(R"(MantenimientoAviones,Salida,([^;]+);)");
+    regex pattern3(R"(DarDeBaja\(([^)]+)\);)");
 
     cout << "\tIngrese la ruta del archivo TXT de Movimientos: ";
     GetOp(path);
@@ -106,27 +103,18 @@ bool CargarMovimientos(CircularDoublyLinkedList<avion> &listaAviones, CircularDo
         string line;
         // Leer el archivo línea por línea
         while (std::getline(inputFile, line)) {
-            if (line.compare("IngresoEquipajes;") == 0){
-                try{
-                    Pasajero pasajero1 = colaPasajeros.dequeue();
-                    if (pasajero1.getEquipaje() > 0)
-                        pilaPasajeros.push(pasajero1);
-                    listaPasajeros.add(pasajero1);
-                    if (pasajero1.getEquipaje() > 0)
-                        cout << "\n\tSe ingreso el pasajero " << pasajero1.getNombre() << " con " << pasajero1.getEquipaje() << " equipaje(s) a la lista de pasajeros y a la cola de pasajeros." << endl;
-                    else
-                        cout << "\n\tSe ingreso el pasajero " << pasajero1.getNombre() << " sin equipaje a la lista de pasajeros." << endl;
-                }catch(const std::exception& e){
-                    std::cerr << "\t" << e.what() << '\n';
-                    cout << "\tPresiona Enter para continuar...";
-                    _getch();  // Espera a que el usuario presione cualquier tecla
-                }
-            }else if (line.compare(0, 29, "MantenimientoAviones,Ingreso,") == 0){
+            if (line.compare(0, 29, "MantenimientoAviones,Ingreso,") == 0){
                 try{
                     regex_search(line, matches, pattern1);
-                    cout << "\n\tSe realizo ingreso de " << matches[1] <<" en mantenimiento de Aviones." << endl;
-                    avion avionActual = listaAviones.remove(matches[1]);
-                    listaAviones2.insert(avionActual);
+                    avion* A = agencia->getBtreeAvionesDisponibles().find(matches[1]);
+                    if (A != nullptr){
+                        avion* unAvion = A->copy();
+                        agencia->getListAvionesMantenimiento().insert(*unAvion);
+                        agencia->getBtreeAvionesDisponibles().remove(*A);
+                        cout << "\n\tSe realizo ingreso de " << matches[1] <<" en mantenimiento de Aviones." << endl;
+                    }else{
+                        cout << "\tEl avion " << matches[1]  << " no se encuentra disponible." << endl;
+                    }
                 }catch(const std::exception& e){
                     std::cerr << "\t" << e.what() << '\n';
                     cout << "\tPresiona Enter para continuar...";
@@ -135,15 +123,30 @@ bool CargarMovimientos(CircularDoublyLinkedList<avion> &listaAviones, CircularDo
             }else if (line.compare(0, 28, "MantenimientoAviones,Salida,") == 0){
                 try{
                     regex_search(line, matches, pattern2);
-                    cout << "\n\tSe realizo salida de " << matches[1] <<" en Mantenimiento de Aviones." << endl;
-                    avion avionActual = listaAviones2.remove(matches[1]);
-                    listaAviones.insert(avionActual);
+                    avion A = agencia->getListAvionesMantenimiento().remove(matches[1]);
+                    agencia->getBtreeAvionesDisponibles().insert(A);
+                    cout << "\n\tSe realizo ingreso de " << matches[1] <<" en mantenimiento de Aviones." << endl;
                 }catch(const std::exception& e){
                     std::cerr << "\t" << e.what() << '\n';
                     cout << "\tPresiona Enter para continuar...";
                     _getch();  // Espera a que el usuario presione cualquier tecla
                 }
-            }   
+            }else if (line.compare(0, 10, "DarDeBaja(") == 0){
+                try{
+                    regex_search(line, matches, pattern3);
+                    cout << "\n\tSe Dio de baja al piloto " << matches[1] <<"." << endl;
+                    int horas = agencia->getHashTablePilotos().eliminar(matches[1]);
+                    cout << "\tHoras de vuelo: " << horas << endl;
+                    if (horas > 0)
+                        agencia->getArbolBBPilotos().eliminar(horas);
+                    else
+                        cout << "\tEl piloto " << matches[1] << " No encontrado." << endl;
+                }catch(const std::exception& e){
+                    std::cerr << "\t" << e.what() << '\n';
+                    cout << "\tPresiona Enter para continuar...";
+                    _getch();  // Espera a que el usuario presione cualquier tecla
+                }
+            }    
         }
 
         inputFile.close(); // Cerrar el archivo
@@ -151,7 +154,7 @@ bool CargarMovimientos(CircularDoublyLinkedList<avion> &listaAviones, CircularDo
         cout << e.what() << endl;
         cout << "Presiona Enter para continuar...";
         _getch();  // Espera a que el usuario presione cualquier tecla
-        return true;
+        return false;
     }
 
     cout << "Presiona Enter para continuar...";
