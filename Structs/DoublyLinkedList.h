@@ -10,6 +10,7 @@ public:
     ~DoublyLinkedList();
 
     Nodo<T>* getHead(){return head;}
+    void setHead(Nodo<T>* head){this->head = head;}
 
     void add(T &val);
     void addEnd(T &val);
